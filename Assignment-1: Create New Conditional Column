@@ -1,0 +1,21 @@
+import pandas as pd
+
+# Assuming you have a DataFrame named 'df' with columns 'ship_mode', 'sales', and 'profit'
+# If not, replace it with your actual DataFrame and column names
+
+# Create a function to calculate surcharge based on ship_mode
+def calculate_surcharge(ship_mode):
+    if ship_mode == "Same Day":
+        return 0.2
+    elif ship_mode == "First Class":
+        return 0.1
+    elif ship_mode == "Standard Class":
+        return 0.05
+    else:
+        return 0
+
+# Apply the function to create the 'surcharge' column
+df['surcharge'] = df['ship_mode'].apply(calculate_surcharge)
+
+# Calculate total cost using the formula
+df['total_cost'] = (df['sales'] - df['profit']) * (1 + df['surcharge'])
